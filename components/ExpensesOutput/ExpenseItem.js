@@ -4,16 +4,15 @@ import { GlobalStyles } from "../../constants/styles";
 import { getFormattedDate } from "../../util/date";
 import { useNavigation } from "@react-navigation/native";
 
-const ExpenseItem = ({ description, amount, date }) => {
+const ExpenseItem = ({ description, amount, date, id }) => {
   const navigation = useNavigation();
   function expensePressHandler() {
-    navigation.navigate("ManageExpense");
+    navigation.navigate("ManageExpense", { expenseId: id });
   }
 
   return (
     <Pressable
-      style={(pressed) => pressed && styles.pressed}
-      android_ripple={{ color: GlobalStyles.colors.accent500 }}
+      style={({pressed}) => pressed && styles.pressed}
       onPress={expensePressHandler}
     >
       <View style={styles.expenseItem}>
@@ -24,7 +23,7 @@ const ExpenseItem = ({ description, amount, date }) => {
           <Text style={styles.textBase}>{getFormattedDate(date)}</Text>
         </View>
         <View style={styles.amountContainer}>
-          <Text style={styles.amount}>{amount.toFixed(2)}</Text>
+          <Text style={styles.amount}>₹{amount.toFixed(2)}</Text>
         </View>
       </View>
     </Pressable>
@@ -33,7 +32,7 @@ const ExpenseItem = ({ description, amount, date }) => {
 
 export default ExpenseItem;
 const styles = StyleSheet.create({
-  pressed: { opacity: 0.75 },
+  pressed: { opacity: 0.75 , borderColor:GlobalStyles.colors.accent500, borderWidth:1},
   expenseItem: {
     padding: 12,
     marginVertical: 8,
@@ -60,7 +59,7 @@ const styles = StyleSheet.create({
   },
   amountContainer: {
     paddingHorizontal: 12,
-    minWidth: 80,
+    minWidth: 100,
     paddingVertical: 4,
     backgroundColor: "white",
     justifyContent: "center",

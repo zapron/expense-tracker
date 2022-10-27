@@ -31,8 +31,8 @@ function ExpensesOverview(){
     }}/>
     <BottomTabs.Screen name="AllExpenses" component={AllExpenses} options={{
       title: "All Expenses",
-      tabBarLabel:" All EXpenses",
-      tabBarIcon:({color,size})=><Ionicons name="calendar" size={size} color={color} onPress={()=>{}}/>
+      tabBarLabel:" All Expenses",
+      tabBarIcon:({color,size})=><Ionicons name="calendar" size={size} color={color}/>
     }}/>
   </BottomTabs.Navigator>
 }
